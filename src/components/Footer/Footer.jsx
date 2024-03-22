@@ -23,10 +23,7 @@ const Footer = () => {
             <h2>Public Partners Association</h2>
             <div className="cap">
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis, numquam. Et incidunt dolor deleniti facere saepe
-                animi, sapiente facilis modi ipsa laboriosam hic vitae adipisci
-                debitis, quis laudantium. Ratione, dolor.
+              We have our sights set firmly on the future. We continuously adapt and innovate, staying ahead of the curve in a rapidly changing business landscape. Our commitment to leveraging emerging trends and technologies ensures that our clients always have the leading edge, capturing the full potential of their investments.
               </p>
             </div>
           </div>
