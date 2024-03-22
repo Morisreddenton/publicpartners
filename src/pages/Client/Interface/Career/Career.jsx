@@ -69,8 +69,7 @@ const Career = () => {
             <div className="for-box">
               <h2>For Employers</h2>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe
-                accusamus atque magni qui cum sint possimus enim beatae?
+                Are you an employer looking forward to recruit the best, qualify and passionate workers? List requirements and let's do the magic for you.
               </p>
               <div className="btn">
                 <span>Post Jobs Here</span>
@@ -79,8 +78,7 @@ const Career = () => {
             <div className="for-box">
               <h2>For Students</h2>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe
-                accusamus atque magni qui cum sint possimus enim beatae?
+               Are you a student with talent, looking for opportunities? Upload CV to meet your ever wanted career and also upgrade your skills
               </p>
               <div className="btn">
                 <span>Upload CV Find Job</span>

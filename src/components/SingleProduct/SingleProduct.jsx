@@ -5,7 +5,7 @@ const SingleProduct = () => {
   return (
     <SingleProductWrapper>
       <div className="top">
-        <samp>SCN</samp>
+        <samp>Stock- 1,200</samp>
         <h1>SheCommerce <br /> <span> Marketplace</span></h1>
        
       </div>
@@ -25,6 +25,11 @@ const SingleProductWrapper = styled.div`
  cursor: pointer;
  font-size: 16px;
  padding: 12px;
+ display: flex;
+ align-items: flex-start;
+ justify-content: center;
+ flex-direction: column;
+ gap: 1rem;
  .top{
   samp{
     color: var(--sky-blue);
@@ -34,10 +39,10 @@ const SingleProductWrapper = styled.div`
     border-radius: 50px;
     font-size: 13px;
     padding: 10px;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
   }
    h1{
     font-size: 1.4rem;

@@ -124,7 +124,7 @@ const Scn = () => {
         </MenuWrapper>
       </SideBarContainerWrapper>
       <DashAreaContainerWrapper className={mobile ? "large" : "small"}>
-        <BurgerButton onClick={() => (setMobile(!mobile))}>
+        <BurgerButton onClick={() => (setMobile(!mobile))} >
           <MdDashboard />
         </BurgerButton>
         {view && <View />}

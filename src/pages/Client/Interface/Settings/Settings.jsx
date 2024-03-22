@@ -6,13 +6,14 @@ import welImg from "../../../../Assets/Images/welcome-img.png";
 import {
   FaEye,
   FaFacebook,
-  FaInstagram,
+  // FaInstagram,
   FaMapMarker,
   FaTiktok,
 } from "react-icons/fa";
 import { AuthContext } from "../../../../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
+import { MdMenu } from "react-icons/md";
 const Settings = ({
   setDocs,
   setView,
@@ -29,6 +30,7 @@ const Settings = ({
   const [usr, setUsr] = useState([]);
   const {currentUser} = useContext(AuthContext);
   const id = currentUser !== null ? currentUser.uid : currentUser?.uid;
+  const [mobile, setMobile] = useState(true);
 
   useEffect(() => {
     id && getUserInfo();
@@ -40,8 +42,6 @@ const Settings = ({
     setUsr(usrInfo.data());
     console.log(usr);
   };
-
-
 
   return (
     <SettingsContainerWrapper>
@@ -111,7 +111,76 @@ const Settings = ({
         </SettingsMenu>
         <DeleteAccount className="btn">Delete Account</DeleteAccount>
       </SideBarWrapper>
+      {mobile && <SideBarWrapperMobile>
+        <h4>Account Settings</h4>
+        <SettingsMenu>
+          <SetLink
+            onClick={() => {
+              setProfile(true);
+              setInfo(false);
+              setAddress(false);
+              setSecurity(false);
+              setIdentity(false);
+              setMobile(false);
+            }}
+          >
+            <span> My Profile</span>
+          </SetLink>
+          <SetLink
+            onClick={() => {
+              setProfile(false);
+              setInfo(true);
+              setAddress(false);
+              setSecurity(false);
+              setIdentity(false);
+              setMobile(false);
+            }}
+          >
+            <span>Personal Information</span>
+          </SetLink>
+          <SetLink
+            onClick={() => {
+              setProfile(false);
+              setInfo(false);
+              setAddress(true);
+              setSecurity(false);
+              setIdentity(false);
+              setMobile(false);
+            }}
+          >
+            <span>Personal Address</span>
+          </SetLink>
+          <SetLink
+            onClick={() => {
+              setProfile(false);
+              setInfo(false);
+              setAddress(false);
+              setSecurity(true);
+              setIdentity(false);
+              setMobile(false);
+            }}
+          >
+            <span>Security Checks</span>
+          </SetLink>
+          <SetLink
+            onClick={() => {
+              setProfile(false);
+              setInfo(false);
+              setAddress(false);
+              setSecurity(false);
+              setIdentity(true);
+              setMobile(false);
+            }}
+          >
+            <span>Identity Verification</span>
+          </SetLink>
+        </SettingsMenu>
+        <DeleteAccount className="btn">Delete Account</DeleteAccount>
+      </SideBarWrapperMobile>}
       <SettingsWrapper>
+        <div className="burger" onClick={() => {setMobile(!mobile)}}>
+          <MdMenu />
+        </div>
         {profile && (
           <ProfileContainerWrapper>
             <div className="top-box">
@@ -151,10 +220,6 @@ const Settings = ({
                   </div>
                   <div className="ico-box">
                     <FaTiktok />
-                    <span>@celeste_deo12</span>
-                  </div>
-                  <div className="ico-box">
-                    <FaInstagram />
                     <span>@celeste_deo12</span>
                   </div>
                 </div>
@@ -412,7 +477,17 @@ const SideBarWrapper = styled.aside`
     color: var(--hero-color);
     font-size: 18px;
   }
+  @media screen and (max-width: 430px) {
+    display: none;    
+  }
 `;
+const SideBarWrapperMobile = styled(SideBarWrapper)`
+  @media screen and (max-width: 430px) {
+    display: flex;  
+    flex-direction: column;
+    width: 100%;
+  }
+`
 const SettingsWrapper = styled.article`
   width: calc(100% - 20%);
   height: 100%;
@@ -422,6 +497,31 @@ const SettingsWrapper = styled.article`
   top: 0;
   right: 0;
   margin-left: -20%;
+  .burger{
+    display: none;
+  }
+  
+  @media screen and (max-width: 430px) {
+   margin-left: 0;
+   width: 100%;
+   position: relative;
+   .burger{
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: red;
+    border-radius: .2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 3rem;
+  }
+  }
 `;
 
 const SettingsMenu = styled.div`
@@ -476,9 +576,10 @@ const ProfileContainerWrapper = styled.div`
     .up {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      width: 15%;
+      justify-content: center;
+      width: max-content;
       float: right;
+      padding: 0 10px;
       color: var(--text-color);
       background: rgb(0, 0, 0, 40%);
       border-radius: 5px;
@@ -588,6 +689,41 @@ const ProfileContainerWrapper = styled.div`
       color: var(--sky-blue);
     }
   }
+
+  @media screen and (max-width: 430px) {
+    height: 100%;
+    .top{
+      width: 100%;
+      display: flex;
+        align-items: center;
+        justify-content: space-between;
+      .up{
+        width: 100%;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .profile-avatar{
+      transform: translateX(-2.5rem);
+      margin-right: 5px;
+    }
+
+    .about-user{
+      flex-direction: column;
+      height: 70%;
+      .left{
+        width: 100%;
+        height: 60%;
+        padding: 1.5rem 0;
+      }
+      .right{
+        height: 40%;
+        width: 100%;
+      }
+    }   
+  }
 `;
 const PersonalInfoContainerWrapper = styled.div`
   width: 100%;
@@ -634,6 +770,15 @@ const PersonalInfoContainerWrapper = styled.div`
     }
     .btn {
       border-radius: 10px;
+    }
+  }
+
+  @media screen and (max-width: 430px) {
+    .personal-info-card{
+      .data{
+        flex-direction: column;
+        margin-top: 5px;
+      }
     }
   }
 `;
@@ -689,6 +834,12 @@ const AddressDetailContainerWrapper = styled.div`
       transform: translateY(3rem);
     }
   }
+  @media screen and (max-width: 430px) {
+      .data{
+        flex-direction: column;
+        margin-top: 5px;
+      }
+  }
 `;
 
 const SecurityContainerWrapper = styled.div`
@@ -733,6 +884,12 @@ const SecurityCheckWrapper = styled.div`
         color: var(--main-color);
       }
     }
+  }
+  @media screen and (max-width: 430px) {
+      .data{
+        flex-direction: column;
+        margin-top: 5px;
+      }
   }
 `;
 
@@ -809,6 +966,16 @@ const IdentityCardWrapper = styled.article`
       }
     }
   }
+  @media screen and (max-width: 430px) {
+      .card{
+        grid-template-columns: 1fr;
+        margin-top: 5px;
+        .card-body{
+          width: 100%;
+          height: 100%;
+        }
+      }
+  }
 `;
 
 const LastAreaContainerWrapper = styled.article`
@@ -852,10 +1019,24 @@ const LastAreaContainerWrapper = styled.article`
     background: var(--text-color);
     border-radius: 0.5rem;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
       width: 95%;
       height: 95%;
     }
+  }
+  @media screen and (max-width: 430px) {
+    flex-direction: column;
+    .left, .right{
+      width: 100%;
+      height: 100%;
+      img{
+        width: 40%;
+      }
+    }
+    
   }
 `;
 
