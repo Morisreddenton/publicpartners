@@ -23,7 +23,7 @@ const Footer = () => {
             <h2>Public Partners Association</h2>
             <div className="cap">
               <p>
-              We have our sights set firmly on the future. We continuously adapt and innovate, staying ahead of the curve in a rapidly changing business landscape. Our commitment to leveraging emerging trends and technologies ensures that our clients always have the leading edge, capturing the full potential of their investments.
+              We continuously adapt and innovate, staying ahead of the curve in a rapidly changing business landscape. Our commitment to leveraging emerging trends and technologies ensures that our clients always have the leading edge, capturing the full potential of their investments.
               </p>
             </div>
           </div>
@@ -244,9 +244,10 @@ const LeftWrapper = styled.article`
       transform: translateY(2rem);
     }
     .abt {
+      padding: 8px 0;
       p {
         width: 100%;
-        line-height: 1.6;
+        line-height: 1.5;
       }
     }
   }
