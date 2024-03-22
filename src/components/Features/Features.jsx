@@ -10,8 +10,7 @@ const Features = () => {
           Your Financial Freedom With <span>PPA.</span>
         </h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
-          molestiae beatae ipsam omnis quo excepturi.
+        Unleash financial freedom today with PPA and take control of your financial future
         </p>
       </HeaderWrapper>
       <FeaturesAreaWrapper>
@@ -30,11 +29,8 @@ const Features = () => {
           <div className="text-box card">
             <div className="top">
               <h1>SheCommerce Network.</h1>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi ipsum molestiae tempore praesentium animi. Iusto
-                accusamus perferendis, quaerat voluptatem neque expedita eum
-                atque! Consectetur ipsum ut laboriosam ea dolore iusto sapiente?
+              <p style={{lineHeight: "1.4"}}>
+              A game-changer in the e-commerce landscape. This cutting-edge platform harnesses the power of advanced technologies to connect businesses with their target audience like never before. Seamlessly integrating social media, influencer marketing, and personalized customer experiences, the SheCommerce Network guarantees increased visibility, engagement, and ultimately, skyrocketing sales.
               </p>
             </div>
             <div className="mid">
@@ -171,10 +167,10 @@ const FeaturesDisplayWrapper = styled.div`
       width: 95%;
     }
     .mid {
-      padding: 12px 0;
+      padding: 8px 0;
       .b-y {
         padding-top: 10px;
-        margin: 10px 0;
+        margin: 8px 0;
         .ico {
           width: 30px;
           height: 30px;

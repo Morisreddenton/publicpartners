@@ -33,9 +33,7 @@ const Hero = () => {
             <h3>QUICK APPROVAL PROCESS</h3>
             <div className="txt">
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero
-                nam sapiente quis beatae nobis dicta minima necessitatibus,
-                minus magnam ducimus.
+              Our quick approval process ensures that you can start benefiting from various opportunities and services in no time, without unnecessary delays.
               </p>
             </div>
           </div>
@@ -43,9 +41,7 @@ const Hero = () => {
             <h3>Flexible Earnings</h3>
             <div className="txt">
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero
-                nam sapiente quis beatae nobis dicta minima necessitatibus,
-                minus magnam ducimus.
+              With flexible earning options, you can customize your income to fit your lifestyle and career goals, providing flexibility and financial freedom.
               </p>
             </div>
           </div>
@@ -175,6 +171,11 @@ const RightContainerWrapper = styled.article`
       margin-top: 15px;
       padding: 12px;
       transform: translateY(2.2rem);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
       h3 {
         font-size: 17px;
         color: var(--main-color);

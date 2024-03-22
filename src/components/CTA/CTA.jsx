@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import ctaImg from "../../Assets/Images/cta.jpeg";
+import { useNavigate } from "react-router-dom";
 const CTA = () => {
+  const navigate = useNavigate()
   return (
     <CtaContainerWrapper className="flex-box">
       <LeftContainer>
@@ -14,14 +16,10 @@ const CTA = () => {
           </h1>
           <div className="text">
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error,
-              quisquam molestiae fuga ipsa, earum reprehenderit illum ullam
-              quidem corporis unde iste recusandae ipsum quo tenetur voluptas.
-              Sapiente adipisci quod et possimus perspiciatis esse incidunt
-              placeat?
+            Join our community of over 5000+ individuals who have already connected, benefiting from valuable connections, networking opportunities, and shared knowledge for personal and professional growth.
             </p>
           </div>
-          <div className="btn">
+          <div className="btn" onClick={() => {navigate(`/community`)}}>
             <span>Join Us Now</span>
           </div>
         </div>

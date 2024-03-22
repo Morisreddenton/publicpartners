@@ -11,8 +11,7 @@ const Empower = () => {
           Empower Your Business With Our <span>Cutting-Edge Features.</span>
         </h1>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet, nemo
-          reprehenderit tempore nulla ipsum repellendus.
+           Gain a competitive edge and improve your business operations with our cutting-edge and empowering features
         </p>
       </HeaderWrapper>
       <EmpowerAreaWrapper>
@@ -22,10 +21,7 @@ const Empower = () => {
           </div>
           <div className="meta-info">
             <h3>Expert Advices And Support</h3>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam
-              labore exercitationem necessitatibus cumque officiis cupiditate
-              soluta? Odit!
+            <p>Expert advices, guidance, and support from our team of professionals will help you and your business to achieve financial success
             </p>
           </div>
         </EmpowerCardWrapper>
@@ -36,9 +32,7 @@ const Empower = () => {
           <div className="meta-info">
             <h3>Audience Reach LookUp</h3>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam
-              labore exercitationem necessitatibus cumque officiis cupiditate
-              soluta? Odit!
+            We assist businesses by providing audience lookup services to help them understand and target their desired customer base effectively.
             </p>
           </div>
         </EmpowerCardWrapper>
@@ -49,9 +43,7 @@ const Empower = () => {
           <div className="meta-info">
             <h3>Maintenance And Security</h3>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam
-              labore exercitationem necessitatibus cumque officiis cupiditate
-              soluta? Odit!
+            Ensure the smooth functioning and security of your business with our comprehensive day-to-day system maintenance and security services.
             </p>
           </div>
           <div></div>
