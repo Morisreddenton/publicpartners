@@ -8,10 +8,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { AuthContext } from "../../../context/AuthContext";
+
+import coverImg from "../../../Assets/Images/cover-bg.jpg";
 
 const initialState = {
   username: String,
@@ -27,7 +31,10 @@ const Auth = () => {
   const { username, email, password } = state;
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  const id = currentUser !== null ? currentUser.uid : currentUser?.uid;
+  const id = currentUser === null ? currentUser?.uid : currentUser.uid;
+
+  const provider = new GoogleAuthProvider();
+
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
@@ -36,32 +43,60 @@ const Auth = () => {
     e.preventDefault();
     if (signUp) {
       if (email && password && username) {
-        const { user } = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        await setDoc(doc(db, "users", user.uid), {
-          ...state,
-          timestamp: serverTimestamp(),
-        });
-        await updateProfile(user, { displayName: `${username}` });
-        setLoading(true);
-      } else {
-        if (email && password) {
-          const { user } = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-          console.log(user);
-        }
+        const {user} = createUserWithEmailAndPassword(auth, email, password).then((response) => {
+          setDoc(doc(db, "users", user.uid), {
+            ...state,
+            timestamp: serverTimestamp(),
+          });
+          updateProfile(user, { displayName: `${username}` });
+          setLoading(true);
+          console.log(response.user)
+        }).catch(() => {
+
+        })
       }
     }
     setTimeout(() => {
       navigate(`/just-a-moment/${id}`);
     }, 5000);
   };
+
+  const handleLoginSubmit = async (e)  => {
+    e.preventDefault();
+    if(!signUp){
+      if(email && password){
+        const {user} =  signInWithEmailAndPassword(auth, email, password).then((response) => {
+          console.log(user)
+        }).catch((err) => {
+          alert(err.message)
+        })
+      }
+    }
+    setLoading(true)
+    setTimeout(() => {
+      navigate(`/overview`)
+    }, 5000);
+  }
+
+  const handleSignInWith = async (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, provider).then((response) => {
+      setDoc(doc(db, "users", response.user.uid),{
+        email: response.user.email,
+        username: response.user.displayName,
+        userProfile: response.user.photoURL,
+        userId: response.user.uid,
+        timestamp: serverTimestamp()
+      })
+      navigate(`/just-a-moment/${id}`);
+    }).catch((err) => {
+      alert(err.message);
+    })
+  }
+
+
+  //app password
+  //rgka pxlj glck kysr
 
   return (
     <AuthContainerWrapper className="flex-box">
@@ -72,8 +107,7 @@ const Auth = () => {
               <img src={logoImg} alt="our-logo" />
             </div>
           </HeaderContainerWrapper>
-          <form onSubmit={handleSubmit}>
-            {signUp && (
+          {signUp && <form onSubmit={handleSubmit}>
               <div className="input-box">
                 <input
                   type="text"
@@ -83,7 +117,6 @@ const Auth = () => {
                   onChange={handleChange}
                 />
               </div>
-            )}
             <div className="input-box">
               <input
                 type="email"
@@ -125,7 +158,7 @@ const Auth = () => {
                 <samp>Or SignIn With</samp>
               </p>
             </div>
-            <div className="input-box flex-box with">
+            <div className="input-box flex-box with" onClick={handleSignInWith}>
               <FaGooglePlusSquare />
               <span>Google</span>
             </div>
@@ -140,7 +173,56 @@ const Auth = () => {
                 <span>{!signUp ? `Register for free` : `Login here`}</span>
               </p>
             </div>
-          </form>
+          </form>}
+         {!signUp && <form onSubmit={handleLoginSubmit}>
+            <div className="input-box">
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-box flex-box">
+              <input
+                type={visible ? "text" : "password"}
+                name="password"
+                placeholder="Enter Password"
+                value={password}
+                onChange={handleChange}
+                style={{ width: "90%", alignItems: "center" }}
+              />
+              <p
+                onClick={() => {
+                  setVisible(!visible);
+                }}
+                style={{ padding: "0px 15px" }}
+              >
+                {" "}
+                {visible ? <FaEyeSlash /> : <FaEye />}
+              </p>
+            </div>
+            <span className="forgot">Forgot Password?</span>
+            <div className="input-box">
+              <button type="submit">
+                {" "}
+                {loading && <CgSpinner className="cg" />}{" "}
+                {signUp ? "SignUp" : "SignIn"}
+              </button>
+            </div>
+            <div
+              className="switch"
+              onClick={() => {
+                setSignUp(!signUp);
+              }}
+            >
+              <p>
+                {!signUp ? `Don't have an account` : `Already have an account`}{" "}
+                <span>{!signUp ? `Register for free` : `Login here`}</span>
+              </p>
+            </div>
+          </form>}
         </FormContainerWrapper>
         <SideImgContainerWrapper>
           <iframe
@@ -156,7 +238,9 @@ const Auth = () => {
 const AuthContainerWrapper = styled.section`
   width: 100%;
   min-height: 100vh;
-  background: var(--white-smoke);
+  background: linear-gradient(var(--main-color), var(--sky-blue-variant)),url(${coverImg});
+  background-size: cover;
+  background-position: center;
 `;
 
 const AuthFormWrapper = styled.article`

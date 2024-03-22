@@ -117,6 +117,11 @@ const EmpowerCardWrapper = styled.div`
   border-radius: 10px;
   box-shadow: var(--box-shadow);
   padding: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
 
   .img-box {
     width: 120px;

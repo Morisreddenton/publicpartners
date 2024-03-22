@@ -109,7 +109,7 @@ const Setup = () => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            setState((prev) => ({ ...prev, front: downloadUrl }));
+            setState((prev) => ({ ...prev, userProfile: downloadUrl }));
             alert('Upload complete can now submit form');
           });
         }
