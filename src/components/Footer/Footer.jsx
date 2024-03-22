@@ -152,7 +152,7 @@ const Footer = () => {
                 navigate(`/term-of-service`);
               }}
             >
-              Terms OF Services
+              Terms Of Services
             </p>
           </div>
         </ItemCardWrapper>
