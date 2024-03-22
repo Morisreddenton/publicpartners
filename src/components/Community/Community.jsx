@@ -84,6 +84,10 @@ const CommunityHeaderWrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 20px 1.2rem;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -106,6 +110,16 @@ const LeftContainer = styled.div`
   .btn {
     border-radius: 0.5rem;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    .cap{
+      p{
+        width: 98%;
+        padding-bottom: 8px;
+      }
+    }
+  }
 `;
 
 const RightContainer = styled.div`
@@ -124,13 +138,23 @@ const RightContainer = styled.div`
     bottom: 0;
     width: 98%;
     height: 95%;
-    /* background: linear-gradient(128deg, var(--main-color), var(--hero-color)); */
     border-radius: inherit;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img{
       width: 100%;
       height: 100%;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    .overlay{
+      img{
+        width: 80%;
+      }
     }
   }
 `;
@@ -144,6 +168,12 @@ const CommunityPlatformsListWrapper = styled.section`
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
   gap: 10px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 430px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PlatformCard = styled.div`
@@ -180,6 +210,10 @@ const PlatformCard = styled.div`
       font-size: 4rem;
       padding: 5px;
     }
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 400px;
   }
 `;
 

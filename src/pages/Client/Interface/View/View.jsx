@@ -12,7 +12,7 @@ const View = () => {
         <HeaderWrapper>
          <div className="left">
          <h1>
-            Welcome Back, <span>{currentUser?.displayName}</span>
+            Welcome Back, {!currentUser ? <span>Celeste</span> : <span>{currentUser?.displayName}</span>}
           </h1>
           <p>5th March 2024</p>
          </div>

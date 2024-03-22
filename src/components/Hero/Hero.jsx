@@ -17,7 +17,7 @@ const Hero = () => {
             eveniet mollitia, velit ratione rem. Dicta, quos.
           </p>
         </div>
-        <div className="btn" onClick={() => {navigate(`/auth`);}}>
+        <div className="btn" onClick={() => {navigate(`/auth`)}}>
           <span>Apply Now</span>
         </div>
         <div className="flex-box-col com">
