@@ -12,7 +12,7 @@ const CTA = () => {
       <RightContainer>
         <div className="cta-info">
           <h1>
-            Join <span>5000+</span> People Who Are <br /> Already Connected.
+            Join <span>5000+</span> People Who Are Already Connected.
           </h1>
           <div className="text">
             <p>
