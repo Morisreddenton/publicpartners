@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 import { FaFacebook, FaTelegram, FaWhatsapp } from "react-icons/fa";
-
+import comImg from "../../Assets/Images/com-banner.svg"
 const Community = () => {
   return (
     <>
@@ -27,7 +27,9 @@ const Community = () => {
             </div>
           </LeftContainer>
           <RightContainer>
-            <div className="overlay"></div>
+            <div className="overlay">
+              <img src={comImg} alt="" />
+            </div>
           </RightContainer>
         </CommunityHeaderWrapper>
         <CommunityPlatformsListWrapper>
@@ -109,7 +111,6 @@ const LeftContainer = styled.div`
 const RightContainer = styled.div`
   width: calc(100% - 70%);
   height: 90vh;
-  background: var(--sky-blue-variant);
   border-radius: 1pc;
   position: relative;
   display: flex;
@@ -123,9 +124,14 @@ const RightContainer = styled.div`
     bottom: 0;
     width: 98%;
     height: 95%;
-    background: linear-gradient(128deg, var(--main-color), var(--sky-blue));
+    /* background: linear-gradient(128deg, var(--main-color), var(--hero-color)); */
     border-radius: inherit;
     z-index: 100;
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 

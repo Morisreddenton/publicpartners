@@ -18,7 +18,7 @@ const Faqs = () => {
        </LeftContainer>
        <RightContainer>
         <AccordionImg>
-          
+          <img src="https://raw.githubusercontent.com/Romerof/FAQ-accordion-card/main/images/illustration-woman-online-mobile.svg" alt="faqs" />
         </AccordionImg>
        </RightContainer>
      </FaqsHeroContainerWrapper>
@@ -125,6 +125,14 @@ const AccordionImg = styled.div`
   border-radius: 1pc;
   position: absolute;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img{
+    width: 100%;
+    height: 100%;
+  }
 `
 
 export default Faqs
