@@ -12,9 +12,7 @@ const Hero = () => {
         </h1>
         <div className="cap">
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio
-            beatae, itaque quis fugit hic incidunt, corrupti aliquam voluptatum
-            eveniet mollitia, velit ratione rem. Dicta, quos.
+          PPA With it unmatched expertise and innovative offerings, empower businesses to reach new heights of success in the digital age.Are you ready to embark on a transformation journey that will revolutionize the way you do business? 
           </p>
         </div>
         <div className="btn" onClick={() => {navigate(`/auth`)}}>
