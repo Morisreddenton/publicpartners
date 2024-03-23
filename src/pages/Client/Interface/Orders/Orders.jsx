@@ -1,13 +1,18 @@
 import React from "react";
 import {
   FaAngleDoubleUp,
+  FaDollarSign,
   FaEdit,
   FaEye,
+  FaFilter,
+  FaHashtag,
   FaMoneyBillWave,
+  FaShippingFast,
   FaTrash,
+  FaUser,
   FaWallet,
 } from "react-icons/fa";
-import { MdAddShoppingCart } from "react-icons/md";
+import { Md10K, MdAddShoppingCart } from "react-icons/md";
 import styled from "styled-components";
 
 const Orders = () => {
@@ -106,6 +111,37 @@ const Orders = () => {
               </tr>
             </tbody>
           </table>
+          <YourOrderContainer>
+            <div className="meta-data">
+              <FaUser />
+              <h4>Kwarteng Joseph</h4>
+            </div>
+            <div className="meta-data">
+              <FaHashtag />
+              <h4>98076</h4>
+            </div>
+            <div className="meta-data">
+              <FaDollarSign />
+              <h4>120</h4>
+            </div>
+            <div className="meta-data">
+              <FaFilter />
+              <h4>Accessories & Electronics</h4>
+            </div>
+            <div className="meta-data">
+              <Md10K />
+              <h4 style={{color: "gold"}}>Pending</h4>
+            </div>
+            <div className="meta-data">
+              <FaShippingFast />
+              <h4 style={{color: "cyan"}}>Delivered</h4>
+            </div>
+            <div className="meta-data" style={{justifyContent: "space-around"}}>
+              <FaEye style={{color: "green"}} />
+              <FaEdit style={{color: "blue"}} />
+              <FaTrash style={{color: "red"}} />
+            </div>
+          </YourOrderContainer>
         </OrderListContainerWrapper>
       </OverlayContainer>
     </OrdersContainerWrapper>
@@ -133,12 +169,21 @@ const OverlayContainer = styled.article`
       padding: 0 12px;
     }
     .btn {
-      width: 20%;
+      width: 50%;
       border-radius: 10px;
       span {
         padding-left: 8px;
       }
     }
+  }
+
+  @media screen and (max-width: 430px) {
+   .h{
+    .btn{
+      width: 50%;
+      gap: 2rem;
+    }
+   }
   }
 `;
 
@@ -193,21 +238,26 @@ const TopContainerWrapper = styled.div`
     grid-template-columns: repeat(2, 1fr);
     height: 45%;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 430px) {
     grid-template-columns: 1fr;
     height: 80%;
+    gap: 6px;
+    .order-stat-card{
+      margin: 0 0;
+    }
   }
 `;
 
 const OrderListContainerWrapper = styled.div`
   width: 98%;
   height: 62%;
-  border: 1.5px solid var(--sky-blue-variant);
+  border: 1.5px solid var(--main-color);
   border-radius: 0.5rem;
   margin: 0 auto;
+  overflow: scroll;
+
   table {
     width: 100%;
-    overflow-x: auto;
     border-collapse: collapse;
     thead {
       background: white;
@@ -239,6 +289,38 @@ const OrderListContainerWrapper = styled.div`
     }
    }
   }
+  @media screen and (max-width: 430px) {
+    table{
+      display: none;
+    }
+  }
 `;
+
+const YourOrderContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: none;
+  @media screen and (max-width: 430px) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 10px;
+    .meta-data{
+      background: rgb(255, 255, 255, 10%) ;
+      box-shadow: 0 0 10px var(--main-color-variant);
+      border-radius: .2rem;
+      color: var(--sky-blue);
+      font-size: 18px;
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      margin: 4px 0;
+    }
+  }
+`
 
 export default Orders;

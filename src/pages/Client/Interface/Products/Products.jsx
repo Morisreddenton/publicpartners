@@ -29,7 +29,7 @@ const Products = () => {
         <SingleProduct />
      </ProductsListContainerWrapper>
      {makeOrder && <RequestProductWrapper>
-       <article>
+       <article className='left'>
         <div className="greetings">
           <h2>Amazing! Is nice to see you make order today, Have a good sales ..</h2>
           <p><FaQuoteLeft  className='ico'/> The quieter you become the better you hear.  <span>Quoted:- <samp>quotesity</samp></span><FaQuoteRight className='ico' /></p>
@@ -71,7 +71,7 @@ const Products = () => {
             <input type="username" name="username" placeholder='Username' />
             <input type="email" name="email" placeholder='Email Address' />
            </div>
-           <div className="input-container">
+           <div className="input-container last">
             <button type='submit'>Proceed To Checkout</button>
            </div>
          </form>
@@ -106,6 +106,12 @@ const ProductHeader = styled.div`
   width: 16%;
   gap: 1rem;
  }
+
+ @media screen and (max-width: 439px) {
+   .btn{
+    width: 50%;
+   }
+ }
 `
 
 const ProductsListContainerWrapper = styled.article`
@@ -136,7 +142,7 @@ const RequestProductWrapper = styled.section`
  grid-template-columns: 30% 69%;
  gap: 1%;
 
- article{
+ .left{
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -244,21 +250,68 @@ const RequestProductWrapper = styled.section`
  }
  @media screen and (max-width: 430px) {
   grid-template-columns: 1fr;
-  min-height: max-content;
+  min-height: 180vh;
+  overflow-y: scroll;
   .header{
-    height: max-content;
     width: 100%;
+    padding: 6px 0;
+    h2{
+      font-size: 18px;
+    }
   }
-  article{
+  .left{
+    height: 50vh;
+    overflow-y: hidden;
+    position: relative;
+    .btn{
+      width: 40px;
+      height: 40px;
+      font-size: 1.7rem;
+      box-shadow: 0 1rem .5rem rgb(0,0,0, 10%);
+      padding: 0;
+      position: fixed;
+      top: 10.5rem;
+      left: 1rem;
+      z-index: 100;
+      span{
+        display: none;
+      }
+    }
+  }
+  .greetings{
     height: max-content;
+    overflow-y: hidden;
+  }
+  .img-box{
+    width: 100%;
+    height: 100%;
+    margin-top: 1rem;
+    img{
+      width: 40%;
+      height: 40%;
+    }
+  }
+  .header{
+    width: 100%;
+    height: 100%;
   }
   .right{
-    .input-container{
-      flex-direction: column;
-      height: max-content;
-      input{
-        width: 100%;
-        height: 60px;
+    width: 100%;
+    height: 190vh;
+    overflow-y: hidden;
+    form{
+      width: 100%;
+      height: 55%;
+      margin-top: 0;
+      .input-container{
+        flex-direction: column;
+        height: 15%;
+        margin-top: 8px;
+
+        button{
+          height: 50%;
+          margin-top: 0;
+        }
       }
     }
   }

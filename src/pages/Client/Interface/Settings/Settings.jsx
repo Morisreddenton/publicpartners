@@ -28,7 +28,7 @@ const Settings = ({
   const [security, setSecurity] = useState(false);
   const [identity, setIdentity] = useState(false);
   const [usr, setUsr] = useState([]);
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const id = currentUser !== null ? currentUser.uid : currentUser?.uid;
   const [mobile, setMobile] = useState(true);
 
@@ -37,14 +37,14 @@ const Settings = ({
     // eslint-disable-next-line
   }, [id]);
   const getUserInfo = async () => {
-    const docRef = doc(db, 'users', id);
+    const docRef = doc(db, "users", id);
     const usrInfo = await getDoc(docRef);
     setUsr(usrInfo.data());
     console.log(usr);
   };
 
   return (
-    <SettingsContainerWrapper>
+    <SettingsContainerWrapper style={mobile ? {overflow: "hidden"} : {overflow: "scroll"}}>
       <SideBarWrapper>
         <h4>Account Settings</h4>
         <SettingsMenu>
@@ -55,7 +55,6 @@ const Settings = ({
               setAddress(false);
               setSecurity(false);
               setIdentity(false);
-         
             }}
           >
             <span> My Profile</span>
@@ -67,7 +66,6 @@ const Settings = ({
               setAddress(false);
               setSecurity(false);
               setIdentity(false);
-              
             }}
           >
             <span>Personal Information</span>
@@ -79,7 +77,6 @@ const Settings = ({
               setAddress(true);
               setSecurity(false);
               setIdentity(false);
-          
             }}
           >
             <span>Personal Address</span>
@@ -91,7 +88,6 @@ const Settings = ({
               setAddress(false);
               setSecurity(true);
               setIdentity(false);
-        
             }}
           >
             <span>Security Checks</span>
@@ -103,7 +99,6 @@ const Settings = ({
               setAddress(false);
               setSecurity(false);
               setIdentity(true);
-      
             }}
           >
             <span>Identity Verification</span>
@@ -111,74 +106,86 @@ const Settings = ({
         </SettingsMenu>
         <DeleteAccount className="btn">Delete Account</DeleteAccount>
       </SideBarWrapper>
-      {mobile && <SideBarWrapperMobile>
-        <h4>Account Settings</h4>
-        <SettingsMenu>
-          <SetLink
-            onClick={() => {
-              setProfile(true);
-              setInfo(false);
-              setAddress(false);
-              setSecurity(false);
-              setIdentity(false);
-              setMobile(false);
-            }}
-          >
-            <span> My Profile</span>
-          </SetLink>
-          <SetLink
-            onClick={() => {
-              setProfile(false);
-              setInfo(true);
-              setAddress(false);
-              setSecurity(false);
-              setIdentity(false);
-              setMobile(false);
-            }}
-          >
-            <span>Personal Information</span>
-          </SetLink>
-          <SetLink
-            onClick={() => {
-              setProfile(false);
-              setInfo(false);
-              setAddress(true);
-              setSecurity(false);
-              setIdentity(false);
-              setMobile(false);
-            }}
-          >
-            <span>Personal Address</span>
-          </SetLink>
-          <SetLink
-            onClick={() => {
-              setProfile(false);
-              setInfo(false);
-              setAddress(false);
-              setSecurity(true);
-              setIdentity(false);
-              setMobile(false);
-            }}
-          >
-            <span>Security Checks</span>
-          </SetLink>
-          <SetLink
-            onClick={() => {
-              setProfile(false);
-              setInfo(false);
-              setAddress(false);
-              setSecurity(false);
-              setIdentity(true);
-              setMobile(false);
-            }}
-          >
-            <span>Identity Verification</span>
-          </SetLink>
-        </SettingsMenu>
-        <DeleteAccount className="btn">Delete Account</DeleteAccount>
-      </SideBarWrapperMobile>}
+      {mobile && (
+        <SideBarWrapperMobile>
+          <h4>Account Settings</h4>
+          <SettingsMenu>
+            <SetLink
+              onClick={() => {
+                setProfile(true);
+                setInfo(false);
+                setAddress(false);
+                setSecurity(false);
+                setIdentity(false);
+                setMobile(false);
+              }}
+            >
+              <span> My Profile</span>
+            </SetLink>
+            <SetLink
+              onClick={() => {
+                setProfile(false);
+                setInfo(true);
+                setAddress(false);
+                setSecurity(false);
+                setIdentity(false);
+                setMobile(false);
+              }}
+            >
+              <span>Personal Information</span>
+            </SetLink>
+            <SetLink
+              onClick={() => {
+                setProfile(false);
+                setInfo(false);
+                setAddress(true);
+                setSecurity(false);
+                setIdentity(false);
+                setMobile(false);
+              }}
+            >
+              <span>Personal Address</span>
+            </SetLink>
+            <SetLink
+              onClick={() => {
+                setProfile(false);
+                setInfo(false);
+                setAddress(false);
+                setSecurity(true);
+                setIdentity(false);
+                setMobile(false);
+              }}
+            >
+              <span>Security Checks</span>
+            </SetLink>
+            <SetLink
+              onClick={() => {
+                setProfile(false);
+                setInfo(false);
+                setAddress(false);
+                setSecurity(false);
+                setIdentity(true);
+                setMobile(false);
+              }}
+            >
+              <span>Identity Verification</span>
+            </SetLink>
+          </SettingsMenu>
+          <DeleteAccount className="btn">Delete Account</DeleteAccount>
+        </SideBarWrapperMobile>
+      )}
       <SettingsWrapper>
-        <div className="burger" onClick={() => {setMobile(!mobile)}}>
+        <div
+          className="burger"
+          onClick={() => {
+            setMobile(!mobile);
+            setProfile(false);
+            setInfo(false);
+            setAddress(false);
+            setSecurity(false);
+            setIdentity(false);
+          }}
+        >
           <MdMenu />
         </div>
         {profile && (
@@ -194,7 +201,7 @@ const Settings = ({
             <div className="user-info">
               <div className="a">
                 <h2>
-                  {usr?.firstName } <span>{usr?.lastName}</span>
+                  {usr?.firstName} <span>{usr?.lastName}</span>
                 </h2>
                 <p>{usr?.bio}</p>
               </div>
@@ -478,16 +485,18 @@ const SideBarWrapper = styled.aside`
     font-size: 18px;
   }
   @media screen and (max-width: 430px) {
-    display: none;    
+    display: none;
   }
 `;
 const SideBarWrapperMobile = styled(SideBarWrapper)`
   @media screen and (max-width: 430px) {
-    display: flex;  
+    display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
-`
+`;
 const SettingsWrapper = styled.article`
   width: calc(100% - 20%);
   height: 100%;
@@ -497,30 +506,30 @@ const SettingsWrapper = styled.article`
   top: 0;
   right: 0;
   margin-left: -20%;
-  .burger{
+  .burger {
     display: none;
   }
-  
+
   @media screen and (max-width: 430px) {
-   margin-left: 0;
-   width: 100%;
-   position: relative;
-   .burger{
-    position: fixed;
-    top: 2rem;
-    left: 2rem;
-    z-index: 100;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: red;
-    border-radius: .2rem;
-    color: var(--text-color);
-    cursor: pointer;
-    font-size: 3rem;
-  }
+    margin-left: 0;
+    width: 100%;
+    position: relative;
+    .burger {
+      position: fixed;
+      top: 4rem;
+      right: 0.3rem;
+      z-index: 100;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: red;
+      border-radius: 0.2rem;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -547,6 +556,10 @@ const SetLink = styled.div`
   span {
     font-size: 15px;
     font-weight: 600;
+  }
+
+  @media screen and (max-width: 430px) {
+    height: 60px;
   }
 `;
 
@@ -692,12 +705,12 @@ const ProfileContainerWrapper = styled.div`
 
   @media screen and (max-width: 430px) {
     height: 100%;
-    .top{
+    .top {
       width: 100%;
       display: flex;
-        align-items: center;
-        justify-content: space-between;
-      .up{
+      align-items: center;
+      justify-content: space-between;
+      .up {
         width: 100%;
         float: left;
         display: flex;
@@ -705,24 +718,24 @@ const ProfileContainerWrapper = styled.div`
         justify-content: center;
       }
     }
-    .profile-avatar{
+    .profile-avatar {
       transform: translateX(-2.5rem);
       margin-right: 5px;
     }
 
-    .about-user{
+    .about-user {
       flex-direction: column;
       height: 70%;
-      .left{
+      .left {
         width: 100%;
         height: 60%;
         padding: 1.5rem 0;
       }
-      .right{
+      .right {
         height: 40%;
         width: 100%;
       }
-    }   
+    }
   }
 `;
 const PersonalInfoContainerWrapper = styled.div`
@@ -774,8 +787,8 @@ const PersonalInfoContainerWrapper = styled.div`
   }
 
   @media screen and (max-width: 430px) {
-    .personal-info-card{
-      .data{
+    .personal-info-card {
+      .data {
         flex-direction: column;
         margin-top: 5px;
       }
@@ -835,10 +848,10 @@ const AddressDetailContainerWrapper = styled.div`
     }
   }
   @media screen and (max-width: 430px) {
-      .data{
-        flex-direction: column;
-        margin-top: 5px;
-      }
+    .data {
+      flex-direction: column;
+      margin-top: 5px;
+    }
   }
 `;
 
@@ -886,10 +899,10 @@ const SecurityCheckWrapper = styled.div`
     }
   }
   @media screen and (max-width: 430px) {
-      .data{
-        flex-direction: column;
-        margin-top: 5px;
-      }
+    .data {
+      flex-direction: column;
+      margin-top: 5px;
+    }
   }
 `;
 
@@ -967,14 +980,14 @@ const IdentityCardWrapper = styled.article`
     }
   }
   @media screen and (max-width: 430px) {
-      .card{
-        grid-template-columns: 1fr;
-        margin-top: 5px;
-        .card-body{
-          width: 100%;
-          height: 100%;
-        }
+    .card {
+      grid-template-columns: 1fr;
+      margin-top: 5px;
+      .card-body {
+        width: 100%;
+        height: 100%;
       }
+    }
   }
 `;
 
@@ -1029,16 +1042,15 @@ const LastAreaContainerWrapper = styled.article`
   }
   @media screen and (max-width: 430px) {
     flex-direction: column;
-    .left, .right{
+    .left,
+    .right {
       width: 100%;
       height: 100%;
-      img{
+      img {
         width: 40%;
       }
     }
-    
   }
 `;
-
 
 export default Settings;
