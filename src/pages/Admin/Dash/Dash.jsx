@@ -8,7 +8,6 @@ import {
   MdLogout,
   MdOutlineShoppingCart,
   MdPostAdd,
-  MdReadMore,
   MdSettings,
 } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
@@ -119,8 +118,8 @@ const Dash = () => {
                 setRead(true);
               }}
           >
-            <MdReadMore />
-            <p>ReadMe</p>
+            <FaUserFriends />
+            <p>Clients</p>
           </div>
         </div>
         <div className="pro">
