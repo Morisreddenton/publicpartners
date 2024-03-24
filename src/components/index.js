@@ -6,6 +6,7 @@ export {default as Empower} from "./Empower/Empower"
 export {default as Boost} from "./Boost/Boost";
 export {default as Footer} from "./Footer/Footer";
 export {default as Partners} from "./Partners/Partners";
+export {default as Testimonials} from "./Testimonials/Testimonials";
 export {default as CTA} from "./CTA/CTA";
 export {default as SingleProduct} from "./SingleProduct/SingleProduct";
 export {default as AddPost} from "./AddPost/AddPost";
