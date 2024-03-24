@@ -1,29 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaAngleDoubleUp,
   FaDollarSign,
-  FaEdit,
-  FaEye,
   FaFilter,
   FaHashtag,
   FaMoneyBillWave,
   FaShippingFast,
-  FaTrash,
+  FaTimes,
   FaUser,
   FaWallet,
 } from "react-icons/fa";
-import { Md10K, MdAddShoppingCart } from "react-icons/md";
+import { Md10K, MdAddShoppingCart, MdGrading, MdRemoveShoppingCart } from "react-icons/md";
 import styled from "styled-components";
 
 const Orders = () => {
+  const [orderIsHere, setOrderIsHere] = useState(false);
   return (
     <OrdersContainerWrapper>
       <OverlayContainer>
         <div className="h">
           <h2 className="tit">Keep Track</h2>
-          <div className="btn"  style={{marginRight: 10}}>
-            <FaMoneyBillWave />
-            <span>Make Payment</span>
+          <div className="btn"  style={{marginRight: 10}} onClick={() => {setOrderIsHere(!orderIsHere);}}>
+            {orderIsHere ? <FaMoneyBillWave /> : <MdGrading />}
+            <span>{orderIsHere ? "Make Payment" : "Request Product"}</span>
           </div>
         </div>
         <TopContainerWrapper>
@@ -77,7 +76,17 @@ const Orders = () => {
           </div>
         </TopContainerWrapper>
         <OrderListContainerWrapper>
-          <table>
+          {!orderIsHere && <article>
+            <div className="ico-box">
+              <MdRemoveShoppingCart />
+            </div>
+            <h1>You've no orders currently</h1>
+            <div className="btn" onClick={() => {setOrderIsHere(!orderIsHere);}}>
+              <MdGrading />
+              <span>Request Product</span>
+            </div>
+          </article>}
+          { orderIsHere && <table>
             <thead>
               <tr>
                 <th>#</th>
@@ -87,7 +96,7 @@ const Orders = () => {
                 <th>Category</th>
                 <th>Payment Status</th>
                 <th>Order Track</th>
-                <th>Action</th>
+                <th>Cancel Order</th>
               </tr>
             </thead>
             <tbody>
@@ -103,15 +112,13 @@ const Orders = () => {
               <td>
                 <samp style={{border: "1px solid green", color: "green", padding: "5px 10px", borderRadius: "5px"}}>Shipped</samp>
               </td>
-              <td className="ico-box">
-                <FaEye style={{color: "green"}} />
-                <FaEdit style={{color: "blue"}} /> 
-                <FaTrash style={{color: "red"}} /> 
+              <td className="ico-box" onClick={() => {setOrderIsHere(!orderIsHere);}}>
+                <FaTimes style={{color: "cyan"}} />
               </td>
               </tr>
             </tbody>
-          </table>
-          <YourOrderContainer>
+          </table>}
+          {orderIsHere && <YourOrderContainer>
             <div className="meta-data">
               <FaUser />
               <h4>Kwarteng Joseph</h4>
@@ -136,12 +143,10 @@ const Orders = () => {
               <FaShippingFast />
               <h4 style={{color: "cyan"}}>Delivered</h4>
             </div>
-            <div className="meta-data" style={{justifyContent: "space-around"}}>
-              <FaEye style={{color: "green"}} />
-              <FaEdit style={{color: "blue"}} />
-              <FaTrash style={{color: "red"}} />
+            <div className="meta-data" style={{justifyContent: "center"}} onClick={() => {setOrderIsHere(false)}} >
+             <FaTimes style={{color: "cyan"}} />
             </div>
-          </YourOrderContainer>
+          </YourOrderContainer>}
         </OrderListContainerWrapper>
       </OverlayContainer>
     </OrdersContainerWrapper>
@@ -169,7 +174,7 @@ const OverlayContainer = styled.article`
       padding: 0 12px;
     }
     .btn {
-      width: 50%;
+      width: 20%;
       border-radius: 10px;
       span {
         padding-left: 8px;
@@ -256,6 +261,32 @@ const OrderListContainerWrapper = styled.div`
   margin: 0 auto;
   overflow: scroll;
 
+  article{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--text-color);
+    width: 100%;
+    height: 100%;
+    .ico-box{
+      width: 60px;
+      height: 60px;
+      background: var(--text-color);
+      border-radius: .5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: red;
+    }
+    .btn{
+      width: 20%;
+      gap: 1rem;
+      border-radius: .5rem;
+    }
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -292,6 +323,11 @@ const OrderListContainerWrapper = styled.div`
   @media screen and (max-width: 430px) {
     table{
       display: none;
+    }
+    article{
+      .btn{
+        width: 50%;
+      }
     }
   }
 `;

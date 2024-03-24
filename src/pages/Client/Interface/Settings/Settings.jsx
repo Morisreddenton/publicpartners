@@ -6,7 +6,6 @@ import welImg from "../../../../Assets/Images/welcome-img.png";
 import {
   FaEye,
   FaFacebook,
-  // FaInstagram,
   FaMapMarker,
   FaTiktok,
 } from "react-icons/fa";
@@ -30,7 +29,7 @@ const Settings = ({
   const [usr, setUsr] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const id = currentUser !== null ? currentUser.uid : currentUser?.uid;
-  const [mobile, setMobile] = useState(true);
+  const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
     id && getUserInfo();
@@ -44,7 +43,7 @@ const Settings = ({
   };
 
   return (
-    <SettingsContainerWrapper style={mobile ? {overflow: "hidden"} : {overflow: "scroll"}}>
+    <SettingsContainerWrapper >
       <SideBarWrapper>
         <h4>Account Settings</h4>
         <SettingsMenu>
